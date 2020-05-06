@@ -1,7 +1,6 @@
 package interfaces;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
 
 import persistence.Miembro;
 
@@ -14,7 +13,7 @@ public interface IMiembro {
 						  int semestre, 
 						  int puntos) throws RemoteException;
 	boolean delMiembro(int cedula)throws RemoteException;
-	boolean addEvento(int cedula,
+	boolean addMiembro(int cedula,
 			 		  int id_cargo, 
 			 		  String nombre,
 			 		  int celular,

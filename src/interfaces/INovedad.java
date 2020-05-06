@@ -1,7 +1,6 @@
 package interfaces;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
 
 import persistence.Novedad;;
 
