@@ -21,7 +21,7 @@ public class RegistroE_Control {
 		ir=(IregistroE) r.lookup("registroE");
 	}
 	
-	public boolean regsitroEventos(int id_registro,
+	/*public boolean regsitroEventos(int id_registro,
 								int id_evento,
 								int id_miembro,
 								int id_asistente,
@@ -37,7 +37,7 @@ public class RegistroE_Control {
 			registra=false;
 		}
 		return registra;
-	}
+	}*/
 	
 	public RegistroE searchAsisE(int id_asistente){
 		try{
@@ -50,7 +50,7 @@ public class RegistroE_Control {
 		return res;
 	}
 	
-	public boolean updateRegistroEvento(int cedula, int id_evento, boolean asistencia){
+	/*public boolean updateRegistroEvento(int cedula, int id_evento, boolean asistencia){
 		boolean update=true;
 		try{
 			if(!ir.updateRegistroEvento(cedula, id_evento, asistencia));
@@ -61,9 +61,9 @@ public class RegistroE_Control {
 			update=false;
 		}
 		return update;
-	}
+	}*/
 	
-	
+	/*
 	public boolean delRegistroEvento(int cedula, int id_evento){
 		boolean del=true;
 		try{
@@ -75,8 +75,8 @@ public class RegistroE_Control {
 			del=false;
 		}
 		return del;
-	}
-	
+	}*/
+	/*
 	public boolean addRegistroEvento(int cedula, int id_evento){
 		boolean add=true;
 		try{
@@ -88,5 +88,5 @@ public class RegistroE_Control {
 			add=false;
 		}
 		return add;
-	}
+	}*/
 }

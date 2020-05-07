@@ -16,7 +16,7 @@ public class EventoControl {
 	
 	public EventoControl()throws RemoteException, NotBoundException{
 		Registry r=LocateRegistry.getRegistry(10000);
-		ir=(IEvento) r.lookup("evento");
+		ir=(IEvento) r.lookup("Evento");
 	}
 	
 	public Evento searchEvento(int id_evento){

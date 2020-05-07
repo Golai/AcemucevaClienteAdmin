@@ -1,10 +1,11 @@
 package interfaces;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import persistence.Miembro;
 
-public interface IMiembro {
+public interface IMiembro extends Remote{
 	Miembro searchMiembro(int cedula) throws RemoteException;
 	boolean updateMiembro(int cedula,
 						  int id_cargo, 
@@ -13,7 +14,7 @@ public interface IMiembro {
 						  int semestre, 
 						  int puntos) throws RemoteException;
 	boolean delMiembro(int cedula)throws RemoteException;
-	boolean addMiembro(int cedula,
+	boolean addEvento(int cedula,
 			 		  int id_cargo, 
 			 		  String nombre,
 			 		  int celular,

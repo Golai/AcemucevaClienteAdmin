@@ -58,7 +58,7 @@ public class MiembroControl {
 		return del;
 	}
 	
-	public boolean addEvento(int cedula, int id_cargo, String nombre, int celular, int semestre, int puntos){
+	/*public boolean addMiembro(int cedula, int id_cargo, String nombre, int celular, int semestre, int puntos){
 		boolean add=true;
 		try{
 			if(!ir.addMiembro(cedula, id_cargo, nombre, celular, semestre, puntos))
@@ -69,5 +69,5 @@ public class MiembroControl {
 			add=false;
 		}
 		return add;
-	}
+	}*/
 }
