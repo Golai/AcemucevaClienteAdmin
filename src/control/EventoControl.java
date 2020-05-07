@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.Date;
+import java.util.List;
 
 import interfaces.IEvento;
 import persistence.Evento;
@@ -15,7 +16,7 @@ public class EventoControl {
 	private IEvento ir=null;
 	
 	public EventoControl()throws RemoteException, NotBoundException{
-		Registry r=LocateRegistry.getRegistry(10000);
+		Registry r=LocateRegistry.getRegistry(10001);
 		ir=(IEvento) r.lookup("Evento");
 	}
 	
@@ -27,7 +28,15 @@ public class EventoControl {
 			e.printStackTrace();
 			eve=null;
 		}
+		System.out.println("respuesta: "+eve);
 		return eve;
+	}
+	
+	public List<Evento> searchEventos() throws RemoteException{
+		List<Evento> l=null;
+		l=ir.searchEventos();
+		return l;
+		
 	}
 	
 	public boolean updateEvento(int id_evento,int id_encargado,

@@ -23,7 +23,10 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
 
 public class eventoGUI {
 
@@ -53,6 +56,9 @@ public class eventoGUI {
 	private JTextField LabelNombreSearch;
 	private JTextField LabelDescripcionSearch;
 	private JTextField LabelEncargadoSearch;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	List<Evento> listaEventos=null;
+	private Evento ItemEventoEliminar=null;
 
 	/**
 	 * Launch the application.
@@ -72,8 +78,9 @@ public class eventoGUI {
 
 	/**
 	 * Create the application.
-	 * @throws NotBoundException 
-	 * @throws RemoteException 
+	 * 
+	 * @throws NotBoundException
+	 * @throws RemoteException
 	 */
 	public eventoGUI() throws RemoteException, NotBoundException {
 		initialize();
@@ -81,11 +88,12 @@ public class eventoGUI {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws NotBoundException 
-	 * @throws RemoteException 
+	 * 
+	 * @throws NotBoundException
+	 * @throws RemoteException
 	 */
 	private void initialize() throws RemoteException, NotBoundException {
-		eventoControl=new EventoControl();
+		eventoControl = new EventoControl();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,6 +107,200 @@ public class eventoGUI {
 		lblNewLabel.setBounds(24, 27, 83, 28);
 		panel.add(lblNewLabel);
 
+		JPanel PanelCancelarEvento = new JPanel();
+		PanelCancelarEvento.setBounds(159, 27, 265, 206);
+		panel.add(PanelCancelarEvento);
+		PanelCancelarEvento.setLayout(null);
+
+		JList list = new JList();
+		list.setValueIsAdjusting(true);
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] { "evento1", "evento2", "evento3" };
+
+			public int getSize() {
+				return values.length;
+			}
+
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setBounds(241, 148, -217, -143);
+		PanelCancelarEvento.add(list);
+
+		JButton cancelarEv = new JButton("guardar");
+		cancelarEv.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					eventoControl=new EventoControl();
+				} catch (RemoteException | NotBoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				eventoControl.delEvento(ItemEventoEliminar.getId_evento());
+			}
+		});
+		cancelarEv.setBounds(76, 160, 89, 23);
+		PanelCancelarEvento.add(cancelarEv);
+
+		JComboBox ComboBoxCancelar = new JComboBox();
+		ComboBoxCancelar.setBounds(62, 24, 158, 22);
+		PanelCancelarEvento.add(ComboBoxCancelar);
+
+		JPanel PanelAgregar = new JPanel();
+		PanelAgregar.setBounds(159, 11, 265, 222);
+		panel.add(PanelAgregar);
+		PanelAgregar.setLayout(null);
+
+		JLabel Titulo = new JLabel("Titulo");
+		Titulo.setBounds(6, 27, 46, 14);
+		PanelAgregar.add(Titulo);
+
+		inputTitulo = new JTextField();
+		inputTitulo.setBounds(75, 24, 176, 20);
+		PanelAgregar.add(inputTitulo);
+		inputTitulo.setColumns(10);
+
+		JLabel Descripcion = new JLabel("Descripcion");
+		Descripcion.setBounds(6, 52, 65, 14);
+		PanelAgregar.add(Descripcion);
+
+		inputDescripcion = new JTextField();
+		inputDescripcion.setBounds(75, 49, 176, 20);
+		PanelAgregar.add(inputDescripcion);
+		inputDescripcion.setColumns(10);
+
+		JLabel Fecha = new JLabel("Fecha");
+		Fecha.setBounds(6, 77, 46, 14);
+		PanelAgregar.add(Fecha);
+
+		inputFecha = new JTextField();
+		inputFecha.setBounds(75, 74, 176, 20);
+		PanelAgregar.add(inputFecha);
+		inputFecha.setColumns(10);
+
+		JLabel Hora = new JLabel("Hora");
+		Hora.setBounds(6, 102, 46, 14);
+		PanelAgregar.add(Hora);
+
+		inputHora = new JTextField();
+		inputHora.setBounds(75, 99, 176, 20);
+		PanelAgregar.add(inputHora);
+		inputHora.setColumns(10);
+
+		JLabel Cupos = new JLabel("Cupos");
+		Cupos.setBounds(6, 127, 46, 14);
+		PanelAgregar.add(Cupos);
+
+		inputCupos = new JTextField();
+		inputCupos.setBounds(75, 124, 176, 20);
+		PanelAgregar.add(inputCupos);
+		inputCupos.setColumns(10);
+
+		JLabel Puntos = new JLabel("Puntos");
+		Puntos.setBounds(6, 152, 46, 14);
+		PanelAgregar.add(Puntos);
+
+		inputPuntos = new JTextField();
+		inputPuntos.setBounds(75, 149, 176, 20);
+		PanelAgregar.add(inputPuntos);
+		inputPuntos.setColumns(10);
+
+		JLabel lblNewLabel_1 = new JLabel("Tipo de evento");
+		lblNewLabel_1.setBounds(6, 177, 83, 14);
+		PanelAgregar.add(lblNewLabel_1);
+
+		JRadioButton RadioPrivadoA = new JRadioButton("Privado");
+		RadioPrivadoA.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tip_evento = "privado";
+			}
+		});
+		RadioPrivadoA.setBounds(95, 173, 65, 23);
+		PanelAgregar.add(RadioPrivadoA);
+
+		JRadioButton RadioPublicoA = new JRadioButton("Publico");
+		RadioPublicoA.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tip_evento = "publico";
+			}
+		});
+		RadioPublicoA.setBounds(172, 173, 65, 23);
+		PanelAgregar.add(RadioPublicoA);
+
+		JButton BotonAgregar = new JButton("Guardar");
+		BotonAgregar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				/////////// metodo para agregar//////////////
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+				try {
+					java.util.Date da = sdf.parse(inputFecha.getText());
+					date = new Date(da.getTime());
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					eventoControl = new EventoControl();
+				} catch (RemoteException | NotBoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				int id_evento = Integer.parseInt(inputIdEvento.getText());
+				int id_encargado = 1;
+				eventoControl.addEvento(id_evento, id_encargado, inputTitulo.getText(), inputDescripcion.getText(),
+						date, "tulua", inputHora.getText(), Integer.parseInt(inputCupos.getText()),
+						Integer.parseInt(inputPuntos.getText()), tip_evento);
+
+			}
+		});
+		BotonAgregar.setBounds(162, 199, 89, 23);
+		PanelAgregar.add(BotonAgregar);
+
+		JButton BotonVaciarA = new JButton("Vaciar");
+		BotonVaciarA.setBounds(95, 199, 65, 23);
+		PanelAgregar.add(BotonVaciarA);
+
+		JButton BotonCancelarA = new JButton("Cancelar");
+		BotonCancelarA.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id=ItemEventoEliminar.getId_evento();
+				try {
+					eventoControl=new EventoControl();
+				} catch (RemoteException | NotBoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				eventoControl.delEvento(id);
+			}
+		});
+		BotonCancelarA.setBounds(0, 199, 89, 23);
+		PanelAgregar.add(BotonCancelarA);
+
+		JLabel lblNewLabel_3 = new JLabel("id Evento");
+		lblNewLabel_3.setBounds(6, 2, 65, 14);
+		PanelAgregar.add(lblNewLabel_3);
+
+		inputIdEvento = new JTextField();
+		inputIdEvento.setBounds(78, -1, 86, 20);
+		PanelAgregar.add(inputIdEvento);
+		inputIdEvento.setColumns(10);
+
 		JPanel PanelSeleccionarAsistencia = new JPanel();
 		PanelSeleccionarAsistencia.setBounds(159, 27, 265, 206);
 		panel.add(PanelSeleccionarAsistencia);
@@ -106,20 +308,20 @@ public class eventoGUI {
 
 		JButton BuscarEvento = new JButton("Seleccionar evento");
 		BuscarEvento.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				int buscar=Integer.parseInt(EventoBuscar.getText());
+				int buscar = Integer.parseInt(EventoBuscar.getText());
 				Evento ojala = new Evento(buscar);
-				
+
 				ojala = eventoControl.searchEvento(buscar);
-				System.out.println("ojala funcione diosito lindo " +ojala);
-				String n=ojala.getNombre_evento();
+				System.out.println("ojala funcione diosito lindo " + ojala);
+				String n = ojala.getNombre_evento();
 				LabelNombreSearch.setText(n);
-				String d=ojala.getDescripcion();
+				String d = ojala.getDescripcion();
 				LabelDescripcionSearch.setText(d);
-				String e1=ojala.getId_encargado()+"";
+				String e1 = ojala.getId_encargado() + "";
 				LabelEncargadoSearch.setText(e1);
 
 			}
@@ -229,14 +431,54 @@ public class eventoGUI {
 		PanelActualizarEvento.add(lblNewLabel_1_1);
 
 		JRadioButton RadioPrivadoActu = new JRadioButton("Privado");
+		RadioPrivadoActu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tip_evento = "privado";
+			}
+		});
 		RadioPrivadoActu.setBounds(95, 176, 65, 23);
 		PanelActualizarEvento.add(RadioPrivadoActu);
 
 		JRadioButton RadioPublicoActu = new JRadioButton("Publico");
+		RadioPublicoActu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tip_evento = "publico";
+			}
+		});
 		RadioPublicoActu.setBounds(162, 173, 65, 23);
 		PanelActualizarEvento.add(RadioPublicoActu);
 
 		JButton BotonActualizar = new JButton("Guardar");
+		BotonActualizar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+				try {
+					java.util.Date da = sdf.parse(inputFechaActu.getText());
+					date = new Date(da.getTime());
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					eventoControl = new EventoControl();
+				} catch (RemoteException | NotBoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				int id_evento = Integer.parseInt(inputIdEventoActu.getText());
+				int id_encargado = 1;
+				eventoControl.updateEvento(id_evento, id_encargado, inputTituloActu.getText(),
+						inputDescripcionActu.getText(), date, "andalucia", inputHoraActu.getText(),
+						Integer.parseInt(inputCuposActu.getText()), Integer.parseInt(inputPuntosActu.getText()),
+						tip_evento);
+			}
+		});
 		BotonActualizar.setBounds(162, 199, 89, 23);
 		PanelActualizarEvento.add(BotonActualizar);
 
@@ -253,168 +495,8 @@ public class eventoGUI {
 		PanelActualizarEvento.add(inputIdEventoActu);
 		inputIdEventoActu.setColumns(10);
 
-		JPanel PanelAgregar = new JPanel();
-		PanelAgregar.setBounds(159, 11, 265, 222);
-		panel.add(PanelAgregar);
-		PanelAgregar.setLayout(null);
-
-		JLabel Titulo = new JLabel("Titulo");
-		Titulo.setBounds(6, 27, 46, 14);
-		PanelAgregar.add(Titulo);
-
-		inputTitulo = new JTextField();
-		inputTitulo.setBounds(75, 24, 176, 20);
-		PanelAgregar.add(inputTitulo);
-		inputTitulo.setColumns(10);
-
-		JLabel Descripcion = new JLabel("Descripcion");
-		Descripcion.setBounds(6, 52, 65, 14);
-		PanelAgregar.add(Descripcion);
-
-		inputDescripcion = new JTextField();
-		inputDescripcion.setBounds(75, 49, 176, 20);
-		PanelAgregar.add(inputDescripcion);
-		inputDescripcion.setColumns(10);
-
-		JLabel Fecha = new JLabel("Fecha");
-		Fecha.setBounds(6, 77, 46, 14);
-		PanelAgregar.add(Fecha);
-
-		inputFecha = new JTextField();
-		inputFecha.setBounds(75, 74, 176, 20);
-		PanelAgregar.add(inputFecha);
-		inputFecha.setColumns(10);
-
-		JLabel Hora = new JLabel("Hora");
-		Hora.setBounds(6, 102, 46, 14);
-		PanelAgregar.add(Hora);
-
-		inputHora = new JTextField();
-		inputHora.setBounds(75, 99, 176, 20);
-		PanelAgregar.add(inputHora);
-		inputHora.setColumns(10);
-
-		JLabel Cupos = new JLabel("Cupos");
-		Cupos.setBounds(6, 127, 46, 14);
-		PanelAgregar.add(Cupos);
-
-		inputCupos = new JTextField();
-		inputCupos.setBounds(75, 124, 176, 20);
-		PanelAgregar.add(inputCupos);
-		inputCupos.setColumns(10);
-
-		JLabel Puntos = new JLabel("Puntos");
-		Puntos.setBounds(6, 152, 46, 14);
-		PanelAgregar.add(Puntos);
-
-		inputPuntos = new JTextField();
-		inputPuntos.setBounds(75, 149, 176, 20);
-		PanelAgregar.add(inputPuntos);
-		inputPuntos.setColumns(10);
-
-		JLabel lblNewLabel_1 = new JLabel("Tipo de evento");
-		lblNewLabel_1.setBounds(6, 177, 83, 14);
-		PanelAgregar.add(lblNewLabel_1);
-
-		JRadioButton RadioPrivadoA = new JRadioButton("Privado");
-		RadioPrivadoA.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				tip_evento = "privado";
-			}
-		});
-		RadioPrivadoA.setBounds(99, 160, 65, 23);
-		PanelAgregar.add(RadioPrivadoA);
-
-		JRadioButton RadioPublicoA = new JRadioButton("Publico");
-		RadioPublicoA.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				tip_evento = "publico";
-			}
-		});
-		RadioPublicoA.setBounds(175, 160, 65, 23);
-		PanelAgregar.add(RadioPublicoA);
-
-		JButton BotonAgregar = new JButton("Guardar");
-		BotonAgregar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				/////////// metodo para agregar//////////////
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-				try {
-					java.util.Date da = sdf.parse(inputFecha.getText());
-					date = new Date(da.getTime());
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				try {
-					eventoControl = new EventoControl();
-				} catch (RemoteException | NotBoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				int id_evento = Integer.parseInt(inputIdEvento.getText());
-				int id_encargado = 1;
-				eventoControl.addEvento(id_evento, id_encargado, inputTitulo.getText(), inputDescripcion.getText(),
-						date, "tulua", inputHora.getText(), Integer.parseInt(inputCupos.getText()),
-						Integer.parseInt(inputPuntos.getText()), tip_evento);
-
-			}
-		});
-		BotonAgregar.setBounds(162, 199, 89, 23);
-		PanelAgregar.add(BotonAgregar);
-
-		JButton BotonVaciarA = new JButton("Vaciar");
-		BotonVaciarA.setBounds(95, 199, 65, 23);
-		PanelAgregar.add(BotonVaciarA);
-
-		JButton BotonCancelarA = new JButton("Cancelar");
-		BotonCancelarA.setBounds(0, 199, 89, 23);
-		PanelAgregar.add(BotonCancelarA);
-
-		JLabel lblNewLabel_3 = new JLabel("id Evento");
-		lblNewLabel_3.setBounds(6, 2, 65, 14);
-		PanelAgregar.add(lblNewLabel_3);
-
-		inputIdEvento = new JTextField();
-		inputIdEvento.setBounds(78, -1, 86, 20);
-		PanelAgregar.add(inputIdEvento);
-		inputIdEvento.setColumns(10);
-
-		JPanel PanelCancelarEvento = new JPanel();
-		PanelCancelarEvento.setBounds(159, 27, 265, 206);
-		panel.add(PanelCancelarEvento);
-		PanelCancelarEvento.setLayout(null);
-
-		JList list = new JList();
-		list.setValueIsAdjusting(true);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] { "evento1", "evento2", "evento3" };
-
-			public int getSize() {
-				return values.length;
-			}
-
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setBounds(241, 148, -217, -143);
-		PanelCancelarEvento.add(list);
-
-		JButton cancelarEv = new JButton("guardar");
-		cancelarEv.setBounds(76, 160, 89, 23);
-		PanelCancelarEvento.add(cancelarEv);
-
 		JRadioButton RadioAgregar = new JRadioButton("agregar");
+		buttonGroup.add(RadioAgregar);
 		RadioAgregar.addActionListener(new ActionListener() {
 
 			@Override
@@ -430,6 +512,7 @@ public class eventoGUI {
 		panel.add(RadioAgregar);
 
 		JRadioButton RadioSeleccionarAsistencia = new JRadioButton("seleccionar asistencia");
+		buttonGroup.add(RadioSeleccionarAsistencia);
 		RadioSeleccionarAsistencia.addActionListener(new ActionListener() {
 
 			@Override
@@ -439,13 +522,13 @@ public class eventoGUI {
 				PanelCancelarEvento.setVisible(false);
 				PanelActualizarEvento.setVisible(false);
 
-				
 			}
 		});
 		RadioSeleccionarAsistencia.setBounds(6, 88, 147, 23);
 		panel.add(RadioSeleccionarAsistencia);
 
 		JRadioButton RadioCancelarEvento = new JRadioButton("Cancelar Evento");
+		buttonGroup.add(RadioCancelarEvento);
 		RadioCancelarEvento.addActionListener(new ActionListener() {
 
 			@Override
@@ -454,12 +537,34 @@ public class eventoGUI {
 				PanelAgregar.setVisible(false);
 				PanelCancelarEvento.setVisible(true);
 				PanelActualizarEvento.setVisible(false);
+				Evento s = new Evento();
+				try {
+					eventoControl=new EventoControl();
+				} catch (RemoteException | NotBoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					listaEventos=eventoControl.searchEventos();
+					System.out.println("listaEventos: "+listaEventos);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				for(int i=0;i<listaEventos.size();i++) {
+					s=listaEventos.get(i);
+					ComboBoxCancelar.addItem(s.getNombre_evento());
+				}
+				int item=ComboBoxCancelar.getSelectedIndex();
+				ItemEventoEliminar=listaEventos.get(item);
+				
 			}
 		});
 		RadioCancelarEvento.setBounds(6, 114, 109, 23);
 		panel.add(RadioCancelarEvento);
 
 		JRadioButton RadioActualizarEvento = new JRadioButton("actualizar Evento");
+		buttonGroup.add(RadioActualizarEvento);
 		RadioActualizarEvento.addActionListener(new ActionListener() {
 
 			@Override

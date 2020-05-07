@@ -4,8 +4,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.List;
 
 import interfaces.INovedad;
+import persistence.Evento;
 import persistence.Novedad;
 
 public class NovedadControl {
@@ -14,8 +16,8 @@ public class NovedadControl {
 	private INovedad ir=null;
 	
 	public NovedadControl()throws RemoteException, NotBoundException{
-		Registry r=LocateRegistry.getRegistry(10000);
-		ir=(INovedad) r.lookup("novedad");
+		Registry r=LocateRegistry.getRegistry(10001);
+		ir=(INovedad) r.lookup("Novedad");
 	}
 	
 	public Novedad searchEvento(int id_novedad){
@@ -27,6 +29,13 @@ public class NovedadControl {
 			nov=null;
 		}
 		return nov;
+	}
+	
+	public List<Novedad> searchNovedades() throws RemoteException {
+		List<Novedad> l=null;
+		l=ir.searchNovedades();
+		return l;
+		
 	}
 	
 	public boolean updateEvento(int id_novedades, int id_encargado, 
