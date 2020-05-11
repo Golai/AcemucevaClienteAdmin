@@ -18,10 +18,11 @@ public class MiembroControl {
 	
 	public MiembroControl()throws RemoteException, NotBoundException{
 		Registry r=LocateRegistry.getRegistry(10000);
-		ir=(IMiembro) r.lookup("evento");
+		ir=(IMiembro) r.lookup("Miembro");
 	}
 	
 	public Miembro searchMiembro(int cedula){
+		System.out.println("cedula en el control: "+ cedula);
 		try{
 			mie=ir.searchMiembro(cedula);
 		}
@@ -29,6 +30,7 @@ public class MiembroControl {
 			e.printStackTrace();
 			mie=null;
 		}
+		System.out.println("miembro llego al control: "+ mie);
 		return mie;
 	}
 	
@@ -58,10 +60,10 @@ public class MiembroControl {
 		return del;
 	}
 	
-	/*public boolean addMiembro(int cedula, int id_cargo, String nombre, int celular, int semestre, int puntos){
+	public boolean addMiembro(int cedula, int id_cargo, String nombre, int celular,String email, int semestre, int puntos){
 		boolean add=true;
 		try{
-			if(!ir.addMiembro(cedula, id_cargo, nombre, celular, semestre, puntos))
+			if(!ir.addMiembro(cedula, id_cargo, nombre, celular, email, semestre, puntos))
 				add=false;
 		}
 		catch(RemoteException e){
@@ -69,5 +71,5 @@ public class MiembroControl {
 			add=false;
 		}
 		return add;
-	}*/
+	}
 }

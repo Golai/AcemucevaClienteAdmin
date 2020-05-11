@@ -14,12 +14,15 @@ public interface IMiembro extends Remote{
 						  int semestre, 
 						  int puntos) throws RemoteException;
 	boolean delMiembro(int cedula)throws RemoteException;
-	boolean addEvento(int cedula,
-			 		  int id_cargo, 
-			 		  String nombre,
-			 		  int celular,
-			 		  int semestre, 
-			 		  int puntos)throws RemoteException;
+	
+	boolean addMiembro(int cedula,
+			int id_cargo,
+			String nombre,
+			int celular,
+			String email,
+			int semestre,
+			int puntos)
+			throws RemoteException;
 
 
 }

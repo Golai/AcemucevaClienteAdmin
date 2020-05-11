@@ -16,7 +16,7 @@ public class NovedadControl {
 	private INovedad ir=null;
 	
 	public NovedadControl()throws RemoteException, NotBoundException{
-		Registry r=LocateRegistry.getRegistry(10001);
+		Registry r=LocateRegistry.getRegistry(10000);
 		ir=(INovedad) r.lookup("Novedad");
 	}
 	

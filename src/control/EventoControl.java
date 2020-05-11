@@ -16,7 +16,7 @@ public class EventoControl {
 	private IEvento ir=null;
 	
 	public EventoControl()throws RemoteException, NotBoundException{
-		Registry r=LocateRegistry.getRegistry(10001);
+		Registry r=LocateRegistry.getRegistry(10000);
 		ir=(IEvento) r.lookup("Evento");
 	}
 	

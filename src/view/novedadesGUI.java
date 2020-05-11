@@ -35,7 +35,6 @@ public class novedadesGUI {
 	private JTextField idEncargadoActu;
 	private JTextField tituloActu;
 	private JTextField descripcionActu;
-	private JTextField novedadActu;
 	private JTextField idEncargadoBuscar;
 	private JTextField idNoveadBuscar;
 	private JTextField tituloBuscar;
@@ -95,9 +94,188 @@ public class novedadesGUI {
 		lblNewLabel.setBounds(10, 34, 93, 27);
 		panel.add(lblNewLabel);
 		
+		JPanel PanelAgregar = new JPanel();
+		PanelAgregar.setBounds(148, 11, 276, 239);
+		panel.add(PanelAgregar);
+		PanelAgregar.setVisible(false);
+		PanelAgregar.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Id Novedad");
+		lblNewLabel_1.setBounds(10, 11, 68, 14);
+		PanelAgregar.add(lblNewLabel_1);
+		
+		idNovedadAg = new JTextField();
+		idNovedadAg.setBounds(88, 8, 86, 20);
+		PanelAgregar.add(idNovedadAg);
+		idNovedadAg.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("id Encargado");
+		lblNewLabel_2.setBounds(10, 50, 68, 14);
+		PanelAgregar.add(lblNewLabel_2);
+		
+		idEncargadoAg = new JTextField();
+		idEncargadoAg.setBounds(88, 47, 86, 20);
+		PanelAgregar.add(idEncargadoAg);
+		idEncargadoAg.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Titulo");
+		lblNewLabel_3.setBounds(10, 87, 46, 14);
+		PanelAgregar.add(lblNewLabel_3);
+		
+		tituloAg = new JTextField();
+		tituloAg.setBounds(88, 84, 86, 20);
+		PanelAgregar.add(tituloAg);
+		tituloAg.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("tipo de novedad");
+		lblNewLabel_4.setBounds(10, 152, 86, 14);
+		PanelAgregar.add(lblNewLabel_4);
+		
+		JButton BotonAgregar = new JButton("agregar");
+		BotonAgregar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id=Integer.parseInt(idNovedadAg.getText());
+				int iE=Integer.parseInt(idEncargadoAg.getText());
+				novedadControl.addNovedad(id,iE
+						,tituloAg.getText(),
+						descripcionAg.getText(), tip_novedad);
+			}
+		});
+		BotonAgregar.setBounds(177, 178, 89, 23);
+		PanelAgregar.add(BotonAgregar);
+		
+		JRadioButton RadioArticuloAg = new JRadioButton("Articulo");
+		RadioArticuloAg.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tip_novedad="articulo";
+			}
+		});
+		RadioArticuloAg.setBounds(97, 148, 61, 23);
+		PanelAgregar.add(RadioArticuloAg);
+		
+		JRadioButton RadioNovedadAg = new JRadioButton("Noticia");
+		RadioNovedadAg.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tip_novedad="noticia";
+				
+			}
+		});
+		RadioNovedadAg.setBounds(177, 148, 74, 23);
+		PanelAgregar.add(RadioNovedadAg);
+		
+		JLabel lblNewLabel_16 = new JLabel("descripcion");
+		lblNewLabel_16.setBounds(10, 112, 68, 14);
+		PanelAgregar.add(lblNewLabel_16);
+		
+		descripcionAg = new JTextField();
+		descripcionAg.setBounds(88, 109, 86, 20);
+		PanelAgregar.add(descripcionAg);
+		descripcionAg.setColumns(10);
+		
+		JPanel PanelActualizar = new JPanel();
+		PanelActualizar.setBounds(148, 11, 276, 239);
+		panel.add(PanelActualizar);
+		PanelActualizar.setVisible(false);
+		PanelActualizar.setLayout(null);
+		
+		JLabel lblNewLabel_6 = new JLabel("Novedad a Modificar");
+		lblNewLabel_6.setBounds(10, 11, 110, 14);
+		PanelActualizar.add(lblNewLabel_6);
+		
+		JComboBox comboBoxActualizar = new JComboBox();
+		comboBoxActualizar.setBounds(106, 36, 160, 22);
+		PanelActualizar.add(comboBoxActualizar);
+		
+		JLabel lblNewLabel_7 = new JLabel("id Encargado");
+		lblNewLabel_7.setBounds(10, 76, 75, 14);
+		PanelActualizar.add(lblNewLabel_7);
+		
+		idEncargadoActu = new JTextField();
+		idEncargadoActu.setBounds(106, 73, 160, 20);
+		PanelActualizar.add(idEncargadoActu);
+		idEncargadoActu.setColumns(10);
+		
+		JLabel lblNewLabel_8 = new JLabel("Titulo");
+		lblNewLabel_8.setBounds(10, 112, 46, 14);
+		PanelActualizar.add(lblNewLabel_8);
+		
+		tituloActu = new JTextField();
+		tituloActu.setBounds(106, 109, 160, 20);
+		PanelActualizar.add(tituloActu);
+		tituloActu.setColumns(10);
+		
+		JLabel lblNewLabel_9 = new JLabel("descripcion");
+		lblNewLabel_9.setBounds(10, 137, 75, 14);
+		PanelActualizar.add(lblNewLabel_9);
+		
+		descripcionActu = new JTextField();
+		descripcionActu.setBounds(106, 134, 160, 20);
+		PanelActualizar.add(descripcionActu);
+		descripcionActu.setColumns(10);
+		
+		JLabel lblNewLabel_10 = new JLabel("tipo Novedad");
+		lblNewLabel_10.setBounds(10, 162, 84, 14);
+		PanelActualizar.add(lblNewLabel_10);
+		
+		JButton BotonActualizar = new JButton("Actuaizar");
+		BotonActualizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id=ItemNovedadEliminar.getId_novedades();
+				int idE=Integer.parseInt(idEncargadoActu.getText());
+				String titulo=tituloActu.getText();
+				String descripcion=descripcionActu.getText();
+				try {
+					guardarActu(id, idE, titulo, descripcion, tip_novedad);
+				} catch (RemoteException | NotBoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//novedadControl=new NovedadControl
+			}
+		});
+		BotonActualizar.setBounds(69, 205, 89, 23);
+		PanelActualizar.add(BotonActualizar);
+		
+		JRadioButton radioArticuloActu = new JRadioButton("articulo");
+		radioArticuloActu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tip_novedad="articulo";
+			}
+		});
+		radioArticuloActu.setBounds(84, 158, 61, 23);
+		PanelActualizar.add(radioArticuloActu);
+		
+		JRadioButton radioNoticiaActu = new JRadioButton("noticia");
+		radioNoticiaActu.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tip_novedad="noticia";
+			}
+		});
+		radioNoticiaActu.setBounds(161, 158, 109, 23);
+		PanelActualizar.add(radioNoticiaActu);
+		
 		JPanel PanelBuscar = new JPanel();
 		PanelBuscar.setBounds(148, 11, 276, 239);
 		panel.add(PanelBuscar);
+		PanelBuscar.setVisible(false);
 		PanelBuscar.setLayout(null);
 		
 		JLabel lblNewLabel_11 = new JLabel("id Encargado");
@@ -168,131 +346,10 @@ public class novedadesGUI {
 		BotonBuscar.setBounds(72, 186, 89, 23);
 		PanelBuscar.add(BotonBuscar);
 		
-		JPanel PanelAgregar = new JPanel();
-		PanelAgregar.setBounds(148, 11, 276, 239);
-		panel.add(PanelAgregar);
-		PanelAgregar.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Id Novedad");
-		lblNewLabel_1.setBounds(10, 11, 68, 14);
-		PanelAgregar.add(lblNewLabel_1);
-		
-		idNovedadAg = new JTextField();
-		idNovedadAg.setBounds(88, 8, 86, 20);
-		PanelAgregar.add(idNovedadAg);
-		idNovedadAg.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("id Encargado");
-		lblNewLabel_2.setBounds(10, 50, 68, 14);
-		PanelAgregar.add(lblNewLabel_2);
-		
-		idEncargadoAg = new JTextField();
-		idEncargadoAg.setBounds(88, 47, 86, 20);
-		PanelAgregar.add(idEncargadoAg);
-		idEncargadoAg.setColumns(10);
-		
-		JLabel lblNewLabel_3 = new JLabel("Titulo");
-		lblNewLabel_3.setBounds(10, 87, 46, 14);
-		PanelAgregar.add(lblNewLabel_3);
-		
-		tituloAg = new JTextField();
-		tituloAg.setBounds(88, 84, 86, 20);
-		PanelAgregar.add(tituloAg);
-		tituloAg.setColumns(10);
-		
-		JLabel lblNewLabel_4 = new JLabel("tipo de novedad");
-		lblNewLabel_4.setBounds(10, 152, 86, 14);
-		PanelAgregar.add(lblNewLabel_4);
-		
-		JButton BotonAgregar = new JButton("agregar");
-		BotonAgregar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				int id=Integer.parseInt(idNovedadAg.getText());
-				int iE=Integer.parseInt(idEncargadoAg.getText());
-				novedadControl.addNovedad(id,iE
-						,tituloAg.getText(),
-						descripcionAg.getText(), tip_novedad);
-			}
-		});
-		BotonAgregar.setBounds(177, 178, 89, 23);
-		PanelAgregar.add(BotonAgregar);
-		
-		JRadioButton RadioArticuloAg = new JRadioButton("Articulo");
-		RadioArticuloAg.setBounds(97, 148, 61, 23);
-		PanelAgregar.add(RadioArticuloAg);
-		
-		JRadioButton RadioNovedadAg = new JRadioButton("Novedad");
-		RadioNovedadAg.setBounds(177, 148, 74, 23);
-		PanelAgregar.add(RadioNovedadAg);
-		
-		JLabel lblNewLabel_16 = new JLabel("descripcion");
-		lblNewLabel_16.setBounds(10, 112, 68, 14);
-		PanelAgregar.add(lblNewLabel_16);
-		
-		descripcionAg = new JTextField();
-		descripcionAg.setBounds(88, 109, 86, 20);
-		PanelAgregar.add(descripcionAg);
-		descripcionAg.setColumns(10);
-		
-		JPanel PanelActualizar = new JPanel();
-		PanelActualizar.setBounds(148, 11, 276, 239);
-		panel.add(PanelActualizar);
-		PanelActualizar.setLayout(null);
-		
-		JLabel lblNewLabel_6 = new JLabel("Novedad a Modificar");
-		lblNewLabel_6.setBounds(10, 11, 110, 14);
-		PanelActualizar.add(lblNewLabel_6);
-		
-		JComboBox comboBoxActualizar = new JComboBox();
-		comboBoxActualizar.setBounds(106, 36, 160, 22);
-		PanelActualizar.add(comboBoxActualizar);
-		
-		JLabel lblNewLabel_7 = new JLabel("id Encargado");
-		lblNewLabel_7.setBounds(10, 76, 75, 14);
-		PanelActualizar.add(lblNewLabel_7);
-		
-		idEncargadoActu = new JTextField();
-		idEncargadoActu.setBounds(106, 73, 160, 20);
-		PanelActualizar.add(idEncargadoActu);
-		idEncargadoActu.setColumns(10);
-		
-		JLabel lblNewLabel_8 = new JLabel("Titulo");
-		lblNewLabel_8.setBounds(10, 112, 46, 14);
-		PanelActualizar.add(lblNewLabel_8);
-		
-		tituloActu = new JTextField();
-		tituloActu.setBounds(106, 109, 160, 20);
-		PanelActualizar.add(tituloActu);
-		tituloActu.setColumns(10);
-		
-		JLabel lblNewLabel_9 = new JLabel("descripcion");
-		lblNewLabel_9.setBounds(10, 137, 75, 14);
-		PanelActualizar.add(lblNewLabel_9);
-		
-		descripcionActu = new JTextField();
-		descripcionActu.setBounds(106, 134, 160, 20);
-		PanelActualizar.add(descripcionActu);
-		descripcionActu.setColumns(10);
-		
-		JLabel lblNewLabel_10 = new JLabel("tipo Novedad");
-		lblNewLabel_10.setBounds(10, 162, 84, 14);
-		PanelActualizar.add(lblNewLabel_10);
-		
-		novedadActu = new JTextField();
-		novedadActu.setBounds(106, 159, 160, 20);
-		PanelActualizar.add(novedadActu);
-		novedadActu.setColumns(10);
-		
-		JButton BotonActualizar = new JButton("Actuaizar");
-		BotonActualizar.setBounds(69, 205, 89, 23);
-		PanelActualizar.add(BotonActualizar);
-		
 		JPanel panelEliminar = new JPanel();
 		panelEliminar.setBounds(148, 11, 276, 239);
 		panel.add(panelEliminar);
+		panelEliminar.setVisible(false);
 		panelEliminar.setLayout(null);
 		
 		JLabel lblNewLabel_5 = new JLabel("Novedad a eliminar");
@@ -349,6 +406,7 @@ public class novedadesGUI {
 				PanelActualizar.setVisible(false);
 				PanelBuscar.setVisible(false);
 				
+				comboBoxEliminar.removeAllItems();
 				Novedad s = new Novedad();
 				try {
 					novedadControl=new NovedadControl();
@@ -365,7 +423,7 @@ public class novedadesGUI {
 				}
 				for(int i=0;i<listaNovedades.size();i++) {
 					s=listaNovedades.get(i);
-					comboBoxEliminar.addItem(s.getTipo_novedad());
+					comboBoxEliminar.addItem(s.getTitulo());
 				}
 				int item=comboBoxEliminar.getSelectedIndex();
 				ItemNovedadEliminar=listaNovedades.get(item);
@@ -385,6 +443,28 @@ public class novedadesGUI {
 				panelEliminar.setVisible(false);
 				PanelActualizar.setVisible(true);
 				PanelBuscar.setVisible(false);
+				
+				comboBoxActualizar.removeAllItems();
+				Novedad s = new Novedad();
+				try {
+					novedadControl=new NovedadControl();
+				} catch (RemoteException | NotBoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					listaNovedades=novedadControl.searchNovedades();
+					System.out.println("listaEventos: "+listaNovedades);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				for(int i=0;i<listaNovedades.size();i++) {
+					s=listaNovedades.get(i);
+					comboBoxActualizar.addItem(s.getTitulo());
+				}
+				int item=comboBoxActualizar.getSelectedIndex();
+				ItemNovedadEliminar=listaNovedades.get(item);
 			}
 		});
 		buttonGroup.add(RadioActualizarNovedad);
@@ -406,5 +486,14 @@ public class novedadesGUI {
 		buttonGroup.add(RadioBuscarNovedad);
 		RadioBuscarNovedad.setBounds(10, 199, 109, 23);
 		panel.add(RadioBuscarNovedad);
+	}
+	
+	///////////////////////////////////////////////////////////////////metodos--------------------------------------------------------
+	public void guardarActu(int id_novedades, int id_encargado, String titulo,String descripcion,
+			String tipo_novedad) throws RemoteException, NotBoundException {
+		novedadControl=new NovedadControl();
+		novedadControl.updateEvento(id_novedades, id_encargado, titulo, descripcion, tipo_novedad);
+		
+		
 	}
 }
